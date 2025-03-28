@@ -1,0 +1,304 @@
+---
+title: "Love Data Week 2023 - Generations Data"
+author: "`r Sys.info()[['user']]`"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  pdf_document: default
+  html_document: default
+  
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_file = paste0("C:\\Users\\BSutton\\OneDrive - National Institutes of Health\\2023\\February\\Love Data Week 2023\\4. Export Data\\LDW Final Report_Sutton", ".pdf")) })
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(readr)
+library(ggplot2)
+library(ggridges)
+library(viridis)
+library(vcd)
+```
+
+```{r include = FALSE}
+
+load(file="C:/Users/BSutton/OneDrive - National Institutes of Health/2023/February/Love Data Week 2023/2. Import Data/37166-0001-Data.rda")
+
+wave1_data <- da37166.0001
+```
+
+```{r Create Limited Dataset, include = FALSE}
+
+lim_data <- wave1_data[,c(1, 15, 23, 26:27, 425, 427:434, 12, 467, 471, 477, 483, 487, 371, 375)]
+
+lim_data <- rename(lim_data, fam_prob = W1Q164H)
+lim_data <- rename(lim_data, friend_prob = W1Q164L)
+
+#drop NAs
+lim_data <- subset(lim_data, fam_prob != "NA")
+lim_data <- subset(lim_data, friend_prob != "NA")
+
+lim_data <- subset(lim_data, W1SEXMINID != "NA")
+lim_data <- subset(lim_data, W1RACE != "NA")
+lim_data <- subset(lim_data, COHORT != "NA")
+```
+
+```{r Recode Variables, include = FALSE}
+
+#fam_prob
+lim_data <- lim_data %>% mutate(fam_prob_recode = case_when(
+  fam_prob == "(5) Mildly agree" | fam_prob == "(6) Strongly agree" | fam_prob == "(7) Very strongly agree" ~ "Agree",
+  fam_prob == "(4) Neutral" ~ "Neutral",
+  fam_prob == "(1) Very strongly disagree" | fam_prob == "(2) Strongly disagree" | fam_prob == "(3) Mildly disagree" ~ "Disagree"
+))
+
+#friend_prob
+lim_data <- lim_data %>% mutate(friend_prob_recode = case_when(
+  friend_prob == "(5) Mildly agree" | friend_prob == "(6) Strongly agree" | friend_prob == "(7) Very strongly agree" ~ "Agree",
+  friend_prob == "(4) Neutral" ~ "Neutral",
+  friend_prob == "(1) Very strongly disagree" | friend_prob == "(2) Strongly disagree" | friend_prob == "(3) Mildly disagree" ~ "Disagree"
+))
+
+#relevel
+lim_data$fam_prob_recode <- factor(lim_data$fam_prob_recode, levels = c('Agree', 'Neutral', 'Disagree'))
+lim_data$friend_prob_recode <- factor(lim_data$friend_prob_recode, levels = c('Agree', 'Neutral', 'Disagree'))
+```
+
+# Introduction
+The Generations study was conducted from 2016-2019 and collected robust information on the well-being of three generations of the LGBTQ+ community (Meyer, 2023). The first wave of this study provides baseline details on study participants, including a variety of demographic, health, and satisfaction data.
+
+# Community Support
+The study asked two similar, but distinct, questions that relate to community support systems:  
+  1. I can talk about my problems with my family.  
+  2. I can talk about my problems with my friends.
+
+As there is still persistent stigma towards the LGBTQ+ community, it is possible that a difference exists in the type of relationship participants have with their families compared to their friends. These nearly identical questions allow for a direct comparison between how participants view these two potential support networks.
+
+This association plot compares the frequencies of responses to these two questions. Respondents were able to select "Very Strongly Agree," "Strongly Agree," "Mildly Agree," "Neutral," "Mildly Disagree," "Strongly Disagree," or "Very Strongly Disagree." The agree and disagree options were condensed for this table to more easily compare groups.
+
+```{r echo = FALSE}
+
+lim_data_corr <- lim_data[,c(24,23)]
+lim_data_corr <- rename(lim_data_corr, `I can talk about my problems with my family.` = fam_prob_recode)
+lim_data_corr <- rename(lim_data_corr, `I can talk about my problems with my friends.` = friend_prob_recode)
+
+freq_plot <- assoc(lim_data_corr, shade = TRUE)
+```
+
+A few interesting trends are revealed in the plot. The blue bars represent frequencies that are greater than the expected number of responses, which is calculated by multiplying the total respondents who selected that option for each question and then dividing that by the total responses. For example, the expected total for those who responded "Agree" to both questions is approximately 653, but the observed total is 729. The red bars represent frequencies that are lower than their expected frequencies. The difference in color represents the magnitude of this difference between the observed frequency and the expected identical frequency.
+
+When comparing responses to these two questions, most respondents who have positive attitudes towards their families were more likely to also have positive attitudes towards their friends and vice versa. This implies that their support networks typically include both or neither of these groups rather than one or the other.
+
+# Satisfaction with Life
+The Satisfaction with Life score is a composite of five different questions from the study:  
+  1. In most ways, my life is close to my ideal.  
+  2. The conditions of my life are excellent.  
+  3. I am satisfied with life.  
+  4. So far I have gotten the important things I want in life.  
+  5. If I could live my life over, I would change almost nothing.  
+
+Participants rated each question on a scale from 1 to 7 where 1 is Strongly Disagree and 7 is Strongly Agree. The composite Satisfaction with Life score is the average rating across these five questions with a higher average rating implying a higher overall satisfaction with life.
+
+Here, the family and friends questions are plotted against the Satisfaction with Life composite score to assess whether those with stronger support networks are generally more satisfied with their lives.
+
+\newpage
+```{r Satisfaction with Life - Family, echo = FALSE, message = FALSE, fig.height=4}
+
+fam_satlife <- ggplot(lim_data, aes(x = W1LIFESAT_I, y = fam_prob, fill = ..x..)) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) +
+  scale_fill_viridis(name = "Age", option = "C") +
+  labs(title = 'I can talk about my problems with my family.') +
+  xlab("Satisfaction with Life Score") +
+  ylab(NULL) +
+  theme_ridges() +
+    theme(
+      legend.position="none",
+      panel.spacing = unit(0.1, "lines"),
+      strip.text.x = element_text(size = 8)
+    )
+
+fam_satlife
+```
+
+```{r Satisfaction with Life - Friends, echo = FALSE, message = FALSE, fig.height=4}
+friend_satlife <- ggplot(lim_data, aes(x = W1LIFESAT_I, y = friend_prob, fill = ..x..)) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) +
+  scale_fill_viridis(name = "Age", option = "C") +
+  labs(title = 'I can talk about my problems with my friends.') +
+  xlab("Satisfaction with Life Score") +
+  ylab(NULL) +
+  theme_ridges() +
+    theme(
+      legend.position="none",
+      panel.spacing = unit(0.1, "lines"),
+      strip.text.x = element_text(size = 8)
+    )
+
+friend_satlife
+```
+
+\newpage
+These ridge graphs plot the distribution of the Satisfaction with Life score for each of the responses to the family and friend questions. Higher Satisfaction with Life values are observed among participants who expressed an ability to discuss problems with their family or friends and lower scores are observed among participants who do not have these support networks. Therefore, both plots confirm that those who have stronger support systems have higher life satisfaction scores.
+
+## Age Cohorts
+The Generations study separated participants into three age cohorts: Younger (18-31), Middle (32-49), and Older (50-60). The largest group is the younger cohort with 654 participants, followed by the older cohort with 467, and the middle cohort with 364.
+
+The ridge plots from the previous section are recreated, but this time additionally breaking them out by age cohort.
+
+```{r Facet Age Cohort - Family, echo = FALSE, message = FALSE, fig.height=4}
+
+fam_satlife_age <- ggplot(lim_data, aes(x = W1LIFESAT_I, y = fam_prob, fill = ..x..)) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) +
+  scale_fill_viridis(name = "Age", option = "C") +
+  labs(title = 'I can talk about my problems with my family.') +
+  xlab("Satisfaction with Life Score") +
+  ylab(NULL) +
+  theme_ridges() +
+    theme(
+      legend.position="none",
+      panel.spacing = unit(0.1, "lines"),
+      strip.text.x = element_text(size = 8)
+    ) +
+  facet_wrap(~COHORT)
+
+fam_satlife_age
+```
+
+```{r Facet Age Cohort - Friends, echo = FALSE, message = FALSE, fig.height=4}
+
+friend_satlife_age <- ggplot(lim_data, aes(x = W1LIFESAT_I, y = friend_prob, fill = ..x..)) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) +
+  scale_fill_viridis(name = "Age", option = "C") +
+  labs(title = 'I can talk about my problems with my friends.') +
+  xlab("Satisfaction with Life Score") +
+  ylab(NULL) +
+  theme_ridges() +
+    theme(
+      legend.position="none",
+      panel.spacing = unit(0.1, "lines"),
+      strip.text.x = element_text(size = 8)
+    ) +
+  facet_wrap(~COHORT)
+
+friend_satlife_age
+```
+
+When looking at the family question ridge plots, there are not many observed differences between them and the standard plot, indicating that the original trend of higher Satisfaction with Life scores among those who positively answered the family question is persistent across age cohorts.
+
+However, the friend question ridge plots are less consistent. In the middle and older cohorts, higher Satisfaction with Life scores are still observed among those who positively answered the friends question, but there are also high scores observed among those who negatively answered that question. This implies that among middle and older participants, overall life satisfaction may be less dependent on friend support systems.
+
+## Sexual Orientation
+The study collected detailed information on the sexual orientation of participants, which provides another opportunity to explore within group differences. For comparison purposes, a simplified version of the full sexual orientation list is used for the following ridge plots that condenses groups to: Lesbian/Gay, Bisexual, and Other Sexual Minority Identity.
+
+\newpage
+```{r Facet Sexual Orientation - Family, echo = FALSE, message = FALSE, fig.height=4}
+
+fam_satlife_sexid <- ggplot(lim_data, aes(x = W1LIFESAT_I, y = fam_prob, fill = ..x..)) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) +
+  scale_fill_viridis(name = "Age", option = "C") +
+  labs(title = 'I can talk about my problems with my family.') +
+  xlab("Satisfaction with Life Score") +
+  ylab(NULL) +
+  theme_ridges() +
+    theme(
+      legend.position="none",
+      panel.spacing = unit(0.1, "lines"),
+      strip.text.x = element_text(size = 8)
+    ) +
+  facet_wrap(~W1SEXMINID)
+
+fam_satlife_sexid
+```
+
+```{r Facet Sexual Orientation - Friends, echo = FALSE, message = FALSE, fig.height=4}
+
+friend_satlife_sexid <- ggplot(lim_data, aes(x = W1LIFESAT_I, y = friend_prob, fill = ..x..)) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) +
+  scale_fill_viridis(name = "Age", option = "C") +
+  labs(title = 'I can talk about my problems with my friends.') +
+  xlab("Satisfaction with Life Score") +
+  ylab(NULL) +
+  theme_ridges() +
+    theme(
+      legend.position="none",
+      panel.spacing = unit(0.1, "lines"),
+      strip.text.x = element_text(size = 8)
+    ) +
+  facet_wrap(~W1SEXMINID)
+
+friend_satlife_sexid
+```
+
+\newpage
+Similar to the age cohort comparison, there are not many observed differences in the family question plots. However, there are several outliers in the friend question plots, especially in the "disagree" responses. This again suggests that there are other factors driving this Satisfaction with Life score beyond a support system that includes friends.
+
+## Race
+The final demographic group for analysis is race. The survey collects robust race data on the participants, however the groups are not evenly distributed. For example, there are 922 white participants, which is almost 50% greater than all other groups combined. For the purposes of this analysis, groups were simplified into "White" and "Non-White" to allow for a more balanced comparison. 
+
+```{r Simplify Race, include = FALSE}
+
+#recode
+lim_data <- lim_data %>% mutate(race_recode = case_when(
+  W1RACE == "(1) Asian" | 
+    W1RACE == "(2) Black/African American" | 
+    W1RACE == "(3) Hispanic/Latino" |
+    W1RACE == "(4) Middle Eastern" |
+    W1RACE == "(5) Native Hawaiian/Pacific Islander" |
+    W1RACE == "(7) American Indian" |
+    W1RACE == "(8) Multi-race" ~ "Non-White",
+  W1RACE == "(6) White" ~ "White"
+))
+
+#relevel
+lim_data$race_recode <- factor(lim_data$race_recode, levels = c('White', 'Non-White'))
+```
+
+```{r Facet Race - Family, echo = FALSE, message = FALSE, warning = FALSE, fig.height=4}
+
+fam_satlife_race <- ggplot(lim_data, aes(x = W1LIFESAT_I, y = fam_prob, fill = ..x..)) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) +
+  scale_fill_viridis(name = "Age", option = "C") +
+  labs(title = 'I can talk about my problems with my family.') +
+  xlab("Satisfaction with Life Score") +
+  ylab(NULL) +
+  theme_ridges() +
+    theme(
+      legend.position="none",
+      panel.spacing = unit(0.1, "lines"),
+      strip.text.x = element_text(size = 8)
+    ) +
+  facet_wrap(~race_recode)
+
+fam_satlife_race
+```
+
+```{r Facet Race - Friends, echo = FALSE, message = FALSE, fig.height=4}
+
+friend_satlife_race <- ggplot(lim_data, aes(x = W1LIFESAT_I, y = friend_prob, fill = ..x..)) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) +
+  scale_fill_viridis(name = "Age", option = "C") +
+  labs(title = 'I can talk about my problems with my friends.') +
+  xlab("Satisfaction with Life Score") +
+  ylab(NULL) +
+  theme_ridges() +
+    theme(
+      legend.position="none",
+      panel.spacing = unit(0.1, "lines"),
+      strip.text.x = element_text(size = 8)
+    ) +
+  facet_wrap(~race_recode)
+
+friend_satlife_race
+```
+
+The plots again reveal a very similar trend to the previous two demographic plots - the family question plots mirror the general trend of higher Satisfaction with Life scores being found among participants who answered positively to that question while the friend question plots have more observable outliers, especially among the negative responses.
+
+# Conclusion
+The Generations study provides important insights into the experiences of the LGBTQ+ community. The analysis here reviewed two important facets of social health: support systems and overall life satisfaction.
+
+The majority of participants seem to have both family and friend support systems, or neither. Additionally, those with stronger support systems tended to also have higher Satisfaction with Life scores. However, when looking at different demographic breakdowns, these satisfaction scores were more polarized when looking at just family support compared to friend support. This may suggest that having a strong family support system is a better indicator of overall life satisfaction than a friend support system. 
+
+Given that approximately one third of participants are not able to discuss their problems with their families, improving family support structures could pose an important opportunity to improve overall life satisfaction among the LGBTQ+ community.
+
+There are also opportunities to improve data collection in the future, especially across demographic groups. Of the demographics observed here, the vast majority of participants were young, white, and lesbian/gay. Having a more representative sample of racial and ethnic minorities and sexual minorities would allow for more precise comparison between groups.

@@ -1,0 +1,215 @@
+File Manifest for ICPSR 37166
+
+Meyer, Ilan H. Generations: A Study of the Life and Health of LGB People in
+a Changing Society, United States, 2016-2019. ICPSR37166-v2. Ann Arbor, MI:
+Inter-university Consortium for Political and Social Research
+[distributor], 2023-01-05. http://doi.org/10.3886/ICPSR37166.v2
+
+Details on the version history can be found below the file listings.
+
+
+Study-level Documentation
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    37166-descriptioncitation.pdf       -       -         -       2023-01-18  -
+
+    37166-related_literature.txt        -       -         -       daily       -
+
+    37166-manifest.txt                  -       -         -       daily       -
+
+    37166-Documentation-crosswalk.xlsx  -       -         -       2023-01-05  7a749fabfed5e131b43072bdc58ca584
+
+    37166-Documentation-methodology.pdf -       -         -       2023-01-05  1b8624eb5d99a4225114149579e23ebd
+
+
+DS0001 Generations Wave 1 Public-Use Data
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    37166-0001-Codebook-ICPSR.pdf       -       -         -       2023-01-05  2570e110a00344430025e744c8236902
+
+    37166-0001-Data.dta                 -       1,518     495     2023-01-05  999ba709214caa4c5f2bb59a8249970a
+
+    37166-0001-Data.rda                 -       1,518     495     2023-01-05  0a46d14d1055f7195c42c30dc06db064
+
+    37166-0001-Data.sav                 -       1,518     495     2023-01-05  ac9b5f275f4391b093611d3761a77a4f
+
+    37166-0001-Data.stc                 -       1,518     495     2023-01-05  88d0c9aadbaae99768b10d0749dd0925
+
+    37166-0001-Data.tsv                 -       1,518     495     2023-01-05  679a8cf3513bd341e4673ca2d29e7507
+
+    37166-0001-Data.txt                 1545    1,518     495     2023-01-05  c2525ba5fb6d6d411abf246b1a7cf71b
+
+    37166-0001-Documentation-wave1_MULTI.xlsx -       -         -       2023-01-05  5c679555bbb3c867c2485b03e28a7282
+
+    37166-0001-Questionnaire-wave1_MULTI.pdf -       -         -       2023-01-05  a1ff24adb47b66e4c6baa4b50214c7a5
+
+    37166-0001-Setup.dct                -       -         -       2023-01-05  d7e485422640d7add3532e12c7f4bb16
+
+    37166-0001-Setup.do                 -       -         -       2023-01-05  f45df1f93785ded3262ab2bd7968125e
+
+    37166-0001-Setup.sas                -       -         -       2023-01-05  c7abe6388e14fd4d482f3c45a008eb53
+
+    37166-0001-Setup.sps                -       -         -       2023-01-05  3708f75ac937c1d612a83ec209caa67d
+
+    37166-0001-Supplemental_syntax.do   -       -         -       2023-01-05  72a72e5a6ebe3a22442b6e36fd675429
+
+    37166-0001-Supplemental_syntax.sas  -       -         -       2023-01-05  33d35d830c953c8913d0602dc1ed2dc4
+
+
+DS0002 Generations Wave 1 Restricted-Use Data
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    37166-0002-Codebook-ICPSR.pdf       -       -         -       2023-01-05  e035671aecfdad7a2bec57b14e936f7c
+
+    37166-0002-Documentation-wave1_MULTI.xlsx -       -         -       2023-01-05  5c679555bbb3c867c2485b03e28a7282
+
+    37166-0002-Questionnaire-wave1_MULTI.pdf -       -         -       2023-01-05  a1ff24adb47b66e4c6baa4b50214c7a5
+
+
+DS0003 Generations Wave 2 Public-Use Data
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    37166-0003-Codebook-ICPSR.pdf       -       -         -       2023-01-05  ea2f3dc3d9c05c0a802bbf16ca44d4ad
+
+    37166-0003-Data.dta                 -       894       450     2023-01-05  846064c2c99eaf279a52f1f67e318616
+
+    37166-0003-Data.rda                 -       894       450     2023-01-05  7f7c8af948a30c034bd559c58434f38b
+
+    37166-0003-Data.sav                 -       894       450     2023-01-05  20172348300fd77a2561f5c85b151e31
+
+    37166-0003-Data.stc                 -       894       450     2023-01-05  5771a7cca49b3c9b983314757874ec95
+
+    37166-0003-Data.tsv                 -       894       450     2023-01-05  b7a7a55d5f8459841032495b1feb97c4
+
+    37166-0003-Data.txt                 1327    894       450     2023-01-05  946e01918a3fbb7257f2771e2683c89c
+
+    37166-0003-Documentation-wave2_MULTI.xlsx -       -         -       2023-01-05  59c78826cf25bb68d60e588d180f6aa8
+
+    37166-0003-Questionnaire-wave2_MULTI.pdf -       -         -       2023-01-05  94b9c76bd9be2d3284cf2e7eeeacfce1
+
+    37166-0003-Setup.dct                -       -         -       2023-01-05  da2bf3f640699092d70ba59475cfcd7f
+
+    37166-0003-Setup.do                 -       -         -       2023-01-05  a7049b07a6a503f8f87e74fdc73c6460
+
+    37166-0003-Setup.sas                -       -         -       2023-01-05  e2343d034c80d847c6d6aa0afac8020e
+
+    37166-0003-Setup.sps                -       -         -       2023-01-05  fa9e625c8b80117d79a56f47282e80bc
+
+    37166-0003-Supplemental_syntax.do   -       -         -       2023-01-05  26575aa48695f71f3251b6bb7a0820bc
+
+    37166-0003-Supplemental_syntax.sas  -       -         -       2023-01-05  1634362a43d206a049414ac0d3098696
+
+
+DS0004 Generations Wave 2 Restricted-Use Data
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    37166-0004-Codebook-ICPSR.pdf       -       -         -       2023-01-05  e8de0bb211b10b40ff2ec160df7f7ff1
+
+    37166-0004-Documentation-wave2_MULTI.xlsx -       -         -       2023-01-05  59c78826cf25bb68d60e588d180f6aa8
+
+    37166-0004-Questionnaire-wave2_MULTI.pdf -       -         -       2023-01-05  94b9c76bd9be2d3284cf2e7eeeacfce1
+
+
+DS0005 Generations Wave 3 Public-Use Data
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    37166-0005-Codebook-ICPSR.pdf       -       -         -       2023-01-05  a7d98e9cb8a91822acececdfe996947c
+
+    37166-0005-Data.dta                 -       707       414     2023-01-05  a3590bfe61931f17f893d6b868fa1744
+
+    37166-0005-Data.rda                 -       707       414     2023-01-05  a880071824972bf6c2f09a81f9003a81
+
+    37166-0005-Data.sav                 -       707       414     2023-01-05  874f191333c5b355e1e5f8dfaab30fce
+
+    37166-0005-Data.stc                 -       707       414     2023-01-05  dcd981351f3e5e14ab2b3d24ee4243b9
+
+    37166-0005-Data.tsv                 -       707       414     2023-01-05  b962d9fd2a0bd92346778abeea4e0d31
+
+    37166-0005-Data.txt                 1324    707       414     2023-01-05  e7f4e02267de1af45da3ccfb54510bbe
+
+    37166-0005-Documentation-wave3_MULTI.xlsx -       -         -       2023-01-05  23909cfa1feb55cdb3d65913b38873b0
+
+    37166-0005-Questionnaire-wave3_MULTI.pdf -       -         -       2023-01-05  fb19366647a66cca97cad85c9e0a0e2a
+
+    37166-0005-Setup.dct                -       -         -       2023-01-05  e0478daefc67be8bd9f9f51756e1bf0b
+
+    37166-0005-Setup.do                 -       -         -       2023-01-05  d5c76de6642e959462c8d1b70d8b3188
+
+    37166-0005-Setup.sas                -       -         -       2023-01-05  b9e9892b2c0286f269d7b9d6b55e0c7b
+
+    37166-0005-Setup.sps                -       -         -       2023-01-05  d8ebf2d738689bd52881f0e545645787
+
+    37166-0005-Supplemental_syntax.do   -       -         -       2023-01-05  4ff10101249096215b7b94b7bff0da53
+
+    37166-0005-Supplemental_syntax.sas  -       -         -       2023-01-05  6a05c179bd0e78f99ce19e475f9d9e8a
+
+
+DS0006 Generations Wave 3 Restricted-Use Data
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    37166-0006-Codebook-ICPSR.pdf       -       -         -       2023-01-05  e11db295b7f01a22cdde9e59396ccb25
+
+    37166-0006-Documentation-wave3_MULTI.xlsx -       -         -       2023-01-05  23909cfa1feb55cdb3d65913b38873b0
+
+    37166-0006-Questionnaire-wave3_MULTI.pdf -       -         -       2023-01-05  fb19366647a66cca97cad85c9e0a0e2a
+
+
+DS0007 Generations Waves 1-3 Merged Public-Use Data
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    37166-0007-Codebook-ICPSR.pdf       -       -         -       2023-01-05  72e5ee842fe5296a13cf43748472fe55
+
+    37166-0007-Data.dta                 -       1,518     1329    2023-01-05  f58bbb876161a06e3a2dd9ac7a8e9971
+
+    37166-0007-Data.rda                 -       1,518     1329    2023-01-05  e9c1f382b72c589da384de806751bcb3
+
+    37166-0007-Data.sav                 -       1,518     1329    2023-01-05  1506c3aae901a2d926ce4437d9f9a6cc
+
+    37166-0007-Data.stc                 -       1,518     1329    2023-01-05  f830fea917ebf4d9708ff67684c75fab
+
+    37166-0007-Data.tsv                 -       1,518     1329    2023-01-05  0ad404b7c3926075d3c91c7c5768355d
+
+    37166-0007-Data.txt                 4050    1,518     1329    2023-01-05  4d8f905c5f24c48d6bf23dc836ceb6e9
+
+    37166-0007-Setup.dct                -       -         -       2023-01-05  04d90bd6ea75d1390d558d91ee28eede
+
+    37166-0007-Setup.do                 -       -         -       2023-01-05  ce581444e47bf442e910ffb23c7a55ed
+
+    37166-0007-Setup.sas                -       -         -       2023-01-05  c0c1fc4b24b72533f8ee765feac0d2dd
+
+    37166-0007-Setup.sps                -       -         -       2023-01-05  689b955c57cd2f8999a572a9a0d23621
+
+    37166-0007-Supplemental_syntax.do   -       -         -       2023-01-05  b2c98338771d9b62014dab1b84d5f697
+
+    37166-0007-Supplemental_syntax.sas  -       -         -       2023-01-05  87e5c6bb2d339faf1bd7ffbaa4ec29c2
+
+
+DS0008 Generations Waves 1-3 Merged Restricted-Use Data
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    37166-0008-Codebook-ICPSR.pdf       -       -         -       2023-01-05  5ee35a8c50604a215441fccf06e641e4
+
+
+Version History
+
+2023-01-05 Minor changes were made to waves 1 and 2, a crosswalk document
+has been made available, and merged datasets were modified to include wave
+3 data.
