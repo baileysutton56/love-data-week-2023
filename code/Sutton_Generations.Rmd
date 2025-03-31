@@ -7,7 +7,7 @@ output:
   html_document: default
   
 knit: (function(inputFile, encoding) {
-  rmarkdown::render(inputFile, encoding = encoding, output_file = paste0("C:\\Users\\BSutton\\OneDrive - National Institutes of Health\\2023\\February\\Love Data Week 2023\\4. Export Data\\LDW Final Report_Sutton", ".pdf")) })
+  rmarkdown::render(inputFile, encoding = encoding, output_file = paste0("~\\4. Export Data\\LDW Final Report_Sutton", ".pdf")) })
 ---
 
 ```{r setup, include=FALSE}
@@ -23,7 +23,7 @@ library(vcd)
 
 ```{r include = FALSE}
 
-load(file="C:/Users/BSutton/OneDrive - National Institutes of Health/2023/February/Love Data Week 2023/2. Import Data/37166-0001-Data.rda")
+load(file="~/2. Import Data/37166-0001-Data.rda")
 
 wave1_data <- da37166.0001
 ```
