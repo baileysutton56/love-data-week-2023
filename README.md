@@ -8,7 +8,7 @@ This project was done as part of ICPSR's 2023 [International Love Data Week](htt
 ## Navigation
 - **:computer: code:** .Rmd file used to generate final report
 - **:file_folder: data:** Generations dataset used for analysis (see desciption and citation in "Data" below)
-- **:mag_right: documentation:** Documentation files provided with the original data download (see desciption and citation in "Data" below)
+- **:books: documentation:** Documentation files provided with the original data download (see desciption and citation in "Data" below)
 - **:bar_chart: final-report:** Final R Markdown generated PDF report
 
 ## Data
