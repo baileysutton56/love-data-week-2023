@@ -36,7 +36,7 @@ Participants were given the same seven likert scale options and a final Satisfac
 ### Programs
 All analysis was conducted in R with a final report generated using R Markdown.
 
-The association plot was created using the [vcd package](https://cran.r-project.org/web/packages/vcd/index.html). The ridge graphs were created using the [ggridges package](https://cran.r-project.org/web/packages/ggridges/index.html) in conjunction with [ggplot2](https://cran.r-project.org/web/packages/ggplot2/index.html) and colored with [viridis](https://cran.r-project.org/web/packages/viridis/index.html).
+The association plot was created using the `vcd`. The ridge graphs were created using `ggridges` in conjunction with `ggplot2` and colored with `viridis`.
 
 ## Results
 The majority of participants seem to have both family and friend support systems, or neither. Additionally, those with stronger support systems tended to also have higher Satisfaction with Life scores. However, when looking at different demographic breakdowns, these satisfaction scores were more polarized when looking at just family support compared to friend support. This may suggest that having a strong family support system is a better indicator of overall life satisfaction than a friend support system. 
